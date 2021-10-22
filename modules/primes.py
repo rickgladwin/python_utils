@@ -1,5 +1,5 @@
 import math
-import bench_timer
+from . import bench_timer
 
 
 class Primes:
@@ -157,7 +157,8 @@ benchmark = bench_timer.Benchmark()
 #     print(f'{i}th prime: {primes.nth_prime_number(i)}')
 # benchmark.end()
 
-benchmark.start()
-j_test = 10001
-print(f'{j_test}th prime: {primes.nth_prime_number(j_test)}')
-benchmark.end()
+if __name__ == '__main__':
+    benchmark.start()
+    j_test = 10001
+    print(f'{j_test}th prime: {primes.nth_prime_number(j_test)}')
+    benchmark.end()

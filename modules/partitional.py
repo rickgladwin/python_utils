@@ -1,5 +1,5 @@
 import copy
-import bench_timer
+from . import bench_timer
 
 
 class Partitional(list):
@@ -223,28 +223,27 @@ class Partitional(list):
 
 # print(sys.version)
 
-print('intializing array...')
-source_list = [i for i in range(1, 101)]
-partitional = Partitional(source_list)
-p_length = len(partitional)
-p_partitions = 3
+if (__name__) == "__main__":
+    print('initializing array...')
+    source_list = [i for i in range(1, 7)]
+    partitional = Partitional(source_list)
+    p_length = len(partitional)
+    p_partitions = 3
 
-bt = bench_timer.Benchmark()
+    bt = bench_timer.Benchmark()
 
-bt.start()
-result = partitional.partition_set(p_length, p_partitions)
-bt.end()
+    bt.start()
+    result = partitional.partition_set(p_length, p_partitions)
+    bt.end()
 
-print(f'\npartition set for n={p_length}, x={p_partitions}:')
-# print(f'\n{result}')
-print(f'\nnumber of partition sets: {len(result)}')
+    print(f'\npartition set for n={p_length}, x={p_partitions}:')
+    # print(f'\n{result}')
+    print(f'\nnumber of partition sets: {len(result)}')
 
-print(f'\n\npartition_sets generated during recursion:\n')
-# for partition_list in result:
-#    print (f'{partition_list}')
+    print(f'\n\npartition_sets generated during recursion:\n')
+    # for partition_list in result:
+    #    print (f'{partition_list}')
 
-for i in range(1, len(partitional) + 1):
-    for j in range(1, i + 1):
-        print(f'\n{i},{j}: {partitional.pascals_partitions[i - 1][j - 1]}')
-
-
+    for i in range(1, len(partitional) + 1):
+        for j in range(1, i + 1):
+            print(f'\n{i},{j}: {partitional.pascals_partitions[i - 1][j - 1]}')
