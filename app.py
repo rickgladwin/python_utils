@@ -4,9 +4,9 @@
 # To run the service, `flask run` on the command line.
 # To run with debugger and reloader active, `export FLASK_ENV=development` beforehand
 
-from modules.test_module import hi_message
+from modules.sayhello_test_module import hi_message
 from modules.partitional import Partitional
-from modules.test_module import add_two_numbers
+from modules.sayhello_test_module import add_two_numbers
 from modules.primes import Primes
 
 from flask import Flask, request

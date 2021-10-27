@@ -1,36 +1,41 @@
 import unittest
-import permutations as p
+from . import combinations as c
 
 # to run:
+# from project root:
 # python -m unittest discover -s modules -p "*_test.py" --verbose
 
-# nPr == "n permute r" == number of arrangements of r items from n objects
+# to run using green:
+# from project root:
+# green
 
-class PermuteTest(unittest.TestCase):
-    def test_returns_permutations_count_for_positive_unequal_integers(self):
-        permutations_count: int = p.permute(n=3,r=2)
-        expected_permutations_count: int = 6
-        self.assertEqual(permutations_count, expected_permutations_count)
+# nCr == "n choose r" == number of combinations of r items from n objects (order doesn't matter)
 
-    def test_returns_permutations_count_for_equal_integers(self):
-        permutations_count: int = p.permute(n=10, r=10)
-        expected_permutations_count: int = 1
-        self.assertEqual(permutations_count, expected_permutations_count)
+class ChooseTest(unittest.TestCase):
+    def test_returns_combinations_count_for_positive_unequal_integers(self):
+        combinations_count: int = c.choose(n=3,r=2)
+        expected_combinations_count: int = 3
+        self.assertEqual(combinations_count, expected_combinations_count)
+
+    def test_returns_combinations_count_for_equal_integers(self):
+        combinations_count: int = c.choose(n=10, r=10)
+        expected_combinations_count: int = 1
+        self.assertEqual(combinations_count, expected_combinations_count)
 
     def test_throws_error_for_invalid_arguments(self):
         try:
-            p.permute(n=3,r=5)
+            c.choose(n=3,r=5)
         except:
             self.assertTrue(1,1)
             return
         self.fail('no exception raised')
 
-class PermutationsTest(unittest.TestCase):
-    def test_returns_a_set_of_permutations_for_positive_unequal_integers(self):
+class CombinationsTest(unittest.TestCase):
+    def test_returns_a_set_of_combinations_for_positive_unequal_integers(self):
         input_items: list = ['a', 'b', 'c']
-        permutations: set = p.permutations(items=input_items, r=2)
-        expected_permutations: set = {['a','b'], ['b', 'c'], ['c', 'd']}
-        self.assertEqual(permutations, expected_permutations)
+        combinations: set = c.combinations(items=input_items, r=2)
+        expected_combinations: set = {['a','b'], ['b', 'c'], ['c', 'd']}
+        self.assertEqual(combinations, expected_combinations)
 
 
 if __name__ == '__main__':
