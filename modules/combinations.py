@@ -1,39 +1,24 @@
 import math
 
-# nCr
-# "n choose r"
-# Combinations: number of collections of r items from n objects
-# Order doesn't matter (see permutations), i.e. [a,b] <==> [b,a]
-# nCr = n!/r!(n-r)!
-def choose(n: int, r: int):
+
+def n_choose_r(n: int, r: int) -> int:
+    """Number of combinations of r items in a set of length n
+    nCr == 'n Choose r' == n!/(r!(n-r)!)
+    Order of items in a combination doesn't matter
+    i.e. {ABC} <==> {BAC}
+    """
     if r == n:
         return 1
     if r > n:
         raise ValueError('r must be less than or equal to n')
-    nCr = math.factorial(n)/(math.factorial(r)*math.factorial(n-r))
-    return nCr
+    if n < 0:
+        raise ValueError('n must be greater than or equal to zero')
+
+    return int(math.factorial(n) / (math.factorial(r) * math.factorial(n-r)))
 
 
-def combinations(items: list, r: int, all_combinations=None) -> set:
-    # combinations of length r in list of length n
-    if all_combinations is None:
-        all_combinations = {}
-    if r == 1:
-        return set(list)
-    else:
-        # add an element of items to each element in combinations(list, r-1)
+def combinations(source: set) -> set:
+    """Given a source set of length n, returns the set of all possible combinations
+       of length 1 to n (or length 0 for n = 0)"""
 
-    return {None}
-
-def build_combo_set(all_sets, combo_length: int) -> list:
-    if combo_length == 1:
-        return all_sets[0]
-
-    set_one_smaller = all_sets[combo_length-1]
-    combo_length_list = []
-    for combo in set_one_smaller:
-        for combo_length_1 in all_sets[0]:
-            # TODO: map this out
-    all_sets.append(combo_length_list)
-    return all_sets
-
+    return set(source)
