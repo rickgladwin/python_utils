@@ -11,21 +11,22 @@ from . import combinations as c
 
 # nCr == "n choose r" == number of combinations of r items from n objects (order doesn't matter)
 
-class ChooseTest(unittest.TestCase):
+
+class NChooseRTest(unittest.TestCase):
     def test_returns_combinations_count_for_positive_unequal_integers(self):
-        combinations_count: int = c.choose(n=3,r=2)
+        combinations_count: int = c.n_choose_r(n=3, r=2)
         expected_combinations_count: int = 3
         self.assertEqual(combinations_count, expected_combinations_count)
 
     def test_returns_combinations_count_for_equal_integers(self):
-        combinations_count: int = c.choose(n=10, r=10)
+        combinations_count: int = c.n_choose_r(n=10, r=10)
         expected_combinations_count: int = 1
         self.assertEqual(combinations_count, expected_combinations_count)
 
-    def test_throws_error_for_invalid_arguments(self):
+    def test_throws_value_error_for_invalid_arguments(self):
         try:
-            c.choose(n=3,r=5)
-        except:
+            c.n_choose_r(n=3,r=5)
+        except ValueError:
             self.assertTrue(1,1)
             return
         self.fail('no exception raised')
