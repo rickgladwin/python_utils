@@ -1,0 +1,4 @@
+verbose       = 2
+logging       = True
+file-pattern = *_test.py
+target = ./modules

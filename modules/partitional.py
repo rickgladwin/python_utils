@@ -4,7 +4,8 @@ from . import bench_timer
 
 class Partitional(list):
     """Extends the list data type. Adds methods for dividing a list into partition sets
-    and returning data about those partition sets"""
+       and returning data about those partition sets. A list's partition set for x is the set of
+       all possible partitions for the list that will divide the list into x total partitions"""
 
     # pascals_partitions_statuses
     DEFAULT: int = 0  # set has not been built
@@ -222,6 +223,10 @@ class Partitional(list):
 
 
 # print(sys.version)
+
+# TODO: create a utility to generate a set of all groupings of all sizes
+#  from a list, if this is not represented with a partitional already.
+#  Think about the difference between permutations and combinations?
 
 if (__name__) == "__main__":
     print('initializing array...')
