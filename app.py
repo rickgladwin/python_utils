@@ -3,13 +3,15 @@
 #
 # To run the service, `flask run` on the command line.
 # To run with debugger and reloader active, `export FLASK_ENV=development` beforehand
+import flask
 
 from modules.sayhello_test_module import hi_message
 from modules.partitional import Partitional
 from modules.sayhello_test_module import add_two_numbers
 from modules.primes import Primes
+from modules.combinations import n_choose_r
 
-from flask import Flask, request
+from flask import Flask, request, Response
 
 app = Flask(__name__)
 
@@ -44,10 +46,25 @@ def primes_nth_prime():
 def partitional_partition_set():
     # e.g. http://127.0.0.1:5000/partitional/partition_set?source_list=hello|there|world&partitions_count=2
     # with json objects: http://127.0.0.1:5000/partitional/partition_set?source_list={%22id%22:1,%22body%22:%22hello%22}|{%22id%22:2,%22body%22:%22there%22}|{%22id%22:3,%22body%22:%22world%22}&partitions_count=2
-    source_list:list = request.args.get('source_list').split('|')
-    partitions_count:int = int(request.args.get('partitions_count'))
+    source_list: list = request.args.get('source_list').split('|')
+    partitions_count: int = int(request.args.get('partitions_count'))
     partitional = Partitional(source_list)
-    partition_set:list = partitional.partition_set(len(source_list), partitions_count)
+    partition_set: list = partitional.partition_set(len(source_list), partitions_count)
 
     return f'partition set:<br>{partition_set}<br>number of sets of length {partitions_count}: {len(partition_set)}'
 
+
+@app.route('/combinations/n_choose_r', methods=['GET'])
+def combinations_n_choose_r():
+    n: int = int(request.args.get('n'))
+    r: int = int(request.args.get('r'))
+
+    result: int = n_choose_r(n, r)
+    result_data_type = type(result).__name__
+
+    data_object: dict = {
+        'data_type': result_data_type,
+        'result': result,
+    }
+
+    return data_object

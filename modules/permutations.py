@@ -1,19 +1,22 @@
 import math
 
-# nPr
-# "n permute r"
-# Permutations: number of arrangements of r items from n objects
-# Order matters (see combinations), i.e. [a,b] != [b,a]
-# nPr = n!/(n-r)!
-def permute(n: int, r: int):
+
+def n_permute_r(n: int, r: int) -> int:
+    """Number of permutations of r items in a set of length n
+        nPr == 'n Permute r' == n!/(n-r)!
+        Order of items in a permutation matters
+        i.e. {ABC} != {BAC}
+        """
+
     if r == n:
         return 1
+
     if r > n:
         raise ValueError('r must be less than or equal to n')
-    nPr = math.factorial(n)/math.factorial(n-r)
-    return nPr
+
+    return int(math.factorial(n)/math.factorial(n-r))
 
 
-def permutations(items: list, r: int) -> set:
+def permutations_set(source_set: set) -> set:
     #
-    return {None}
+    return source_set

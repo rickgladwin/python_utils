@@ -18,10 +18,10 @@ class Fibonacci:
         if n < len(self.fibs) and self.fibs[n]:
             return self.fibs[n]
         else:
-            self.fibs.insert(n, self.fib(n-1) + self.fib(n-2))
+            self.fibs.insert(n, self.fib(n - 1) + self.fib(n - 2))
             return self.fibs[n]
 
-    def fib_in_constant_space(self, n:int) -> int:
+    def fib_in_constant_space(self, n: int) -> int:
         """returns the nth (0-indexed) Fibonacci number F(n) using O(1) space
             and discards all other Fibonacci numbers up to F(n) except for
             values in the 'one back' and 'two back' accumulators"""
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     benchmark.start()
     while not halt:
         fib_out = fibonacci.fib(index)
-        if fib_out>4000000:
+        if fib_out > 4000000:
             halt = True
             break
         if fib_out % 2 == 0:
