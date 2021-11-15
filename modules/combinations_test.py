@@ -36,13 +36,13 @@ class CombinationsTest(unittest.TestCase):
     def test_returns_an_empty_list_for_an_empty_input_list(self):
         input_set: list = list()
         combinations_result: list = c.list_combinations(input_set)
-        expected_combinations: list = list()
+        expected_combinations: list = list([])
         self.assertEqual(combinations_result, expected_combinations)
 
     def test_returns_a_list_of_length_one_for_input_of_length_one(self):
         input_set: list = ['hello']
         combinations_result: list = c.list_combinations(input_set)
-        expected_combinations: list = ['hello']
+        expected_combinations: list = [[], ['hello']]
         self.assertEqual(combinations_result, expected_combinations)
 
     def test_returns_a_list_of_combinations_for_positive_unequal_n_and_r(self):

@@ -26,11 +26,14 @@ def list_combinations(source: list) -> list:
 
     n: int = len(source)
     r_lists: list = [[] for i in range(0, n + 1)]
+    print(f'r_lists = {r_lists}')
 
     if n == 0:
-        return list()
+        print(f'returning {list([])}')
+        return list([])
 
     if n == 1:
+        print(f'returning {source}')
         return source
 
     # init
@@ -45,24 +48,26 @@ def list_combinations(source: list) -> list:
     print(f'r_lists[1] = {r_lists[1]}')
 
     for i in range(2, n + 1):
-        print(f'---------------------- i = {i} of {n}')
+        print(f'\n----------------------\n')
         last_list: list = r_lists[i - 1]
         print(f'last_list (r_lists[{i - 1}]): {last_list}')
         this_list: list = r_lists[i]
         print(f'this_list (r_lists[{i}]): {this_list}')
         last_list_length: int = len(last_list)
 
-        # for j in range(0, last_list_length):
-        for j in range(0, i):
+        for j in range(0, last_list_length):
+            # for j in range(0, i):
             # print(f'j = {j} of {last_list_length - 1}')
-            print(f'j = {j} of {i - 1}')
+            # print(f'j = {j} of {i - 1}')
             # base_combo = list(last_list[j])
             # print(f'appending to base combo: {base_combo}')
 
             for k in range(j + 1, n):
                 base_combo = list(last_list[j])
                 print(f'appending to base combo (last_list[j]): {base_combo}')
-                print(f'k = {k} of {n - 1}')
+                print(f'i = {i} of {n}')
+                print(f'j = {j} of {i-1}')
+                print(f'k = {k} of {n-1}')
                 print(f'source[k] = {source[k]}')
                 base_combo.append(source[k])
                 this_list.append(base_combo)
@@ -75,4 +80,9 @@ def list_combinations(source: list) -> list:
 
 if __name__ == '__main__':
     input_list: list = ['a', 'b', 'c', 'd']
+    # input_list: list = ['a', 'b', 'c']
+    # input_list: list = ['a', 'b']
+    # input_list: list = ['a']
+    # input_list: list = []
+    print(f'trying {input_list}')
     list_combinations(source=input_list)
