@@ -25,8 +25,22 @@ def list_combinations(source: list) -> list:
        of length 1 to n (or length 0 for n = 0)"""
 
     n: int = len(source)
+    s_lists: list = [[[] for j in range(n - i, 0, -1)] for i in range(0, n + 1)]
     r_lists: list = [[] for i in range(0, n + 1)]
+
+    s_lists[0][0] = {'a'}
+    s_lists[0][1] = {'b'}
+    s_lists[0][2] = {'c'}
+    s_lists[0][3] = {'d'}
+
+    s_lists[1][0] = {'ab', 'ac', 'ad'}
+    s_lists[1][1] = {'bc', 'bd'}
+    s_lists[1][2] = {'cd'}
+
+    # s_lists[2][0] = {'abc', 'abd'}
+
     print(f'r_lists = {r_lists}')
+    print(f's_lists = {s_lists}')
 
     if n == 0:
         print(f'returning {list([])}')
