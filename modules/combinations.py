@@ -92,11 +92,17 @@ def combinations_r(source: list, r: int) -> list:
     """List of all combinations of length r in a source list of length n"""
     n: int = len(source)
 
+    if r < 0 or n < 0:
+        raise ValueError(f'n ({n}) and r ({r}) must be greater or equal to 0')
+
+    if n < r:
+        raise ValueError(f'n ({n}) must be greater than or equal to r ({r})')
+
     if n == 0 or r == 0:
         return list([])
 
-    r_lists: list = [[] for i in range(0, n)]
     base_list: list = source
+    r_lists: list = [[] for i in range(0, n)]
 
     if r == 1:
         for i in range(0, n):

@@ -37,6 +37,14 @@ class NChooseRTest(unittest.TestCase):
 
 
 class CombinationsTest(unittest.TestCase):
+    def test_throws_value_error_for_n_or_r_less_than_zero(self):
+        try:
+            c.n_choose_r(n=-1, r=5)
+        except ValueError:
+            self.assertTrue(1, 1)
+            return
+        self.fail('no exception raised')
+
     def test_returns_an_empty_list_for_an_empty_input_list(self):
         input_list: list = list()
         combinations_result: list = c.list_combinations(input_list)
@@ -63,9 +71,33 @@ class CombinationsTest(unittest.TestCase):
 
 
 class CombinationsRTest(unittest.TestCase):
-    def test_returns_an_empty_list_for_an_empty_input_list_and_positive_r(self):
+    def test_throws_value_error_for_n_less_than_zero(self):
+        try:
+            c.n_choose_r(n=-1, r=5)
+        except ValueError:
+            self.assertTrue(1, 1)
+            return
+        self.fail('no exception raised for n less than 0')
+
+    def test_throws_value_error_for_r_less_than_zero(self):
+        try:
+            c.n_choose_r(n=10, r=-5)
+        except ValueError:
+            self.assertTrue(1, 1)
+            return
+        self.fail('no exception raised for r less than 0')
+
+    def test_throws_value_error_for_n_less_than_r(self):
+        try:
+            c.n_choose_r(n=10, r=11)
+        except ValueError:
+            self.assertTrue(1, 1)
+            return
+        self.fail('no exception raised for n less than r')
+
+    def test_returns_an_empty_list_for_r_and_n_equal_0(self):
         input_list: list = list()
-        r: int = 2
+        r: int = 0
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
         expected_result: list = list([])
