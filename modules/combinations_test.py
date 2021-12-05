@@ -1,6 +1,7 @@
 import unittest
 from . import combinations as c
 
+
 # to run:
 # from project root:
 # python -m unittest discover -s modules -p "*_test.py" --verbose
@@ -52,10 +53,10 @@ class CombinationsTest(unittest.TestCase):
         input_list: list = ['a', 'b', 'c']
         combinations_result: list = c.list_combinations(source=input_list)
         expected_combinations: list = [
-            [[]],                                   # r = 0
-            [['a'], ['b'], ['c']],                  # r = 1
-            [['a', 'b'], ['a', 'c'], ['b', 'c']],   # r = 2
-            [['a', 'b', 'c']]                       # r = 3
+            [[]],  # r = 0
+            [['a'], ['b'], ['c']],  # r = 1
+            [['a', 'b'], ['a', 'c'], ['b', 'c']],  # r = 2
+            [['a', 'b', 'c']]  # r = 3
         ]
         print(f'expected_combinations:             {expected_combinations}')
         self.assertEqual(combinations_result, expected_combinations)
@@ -71,7 +72,7 @@ class CombinationsRTest(unittest.TestCase):
         self.assertEqual(combinations_r_result, expected_result)
 
     def test_returns_an_empty_list_for_r_equals_0(self):
-        input_list: list = ['a','b','c']
+        input_list: list = ['a', 'b', 'c']
         r: int = 0
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
@@ -91,7 +92,7 @@ class CombinationsRTest(unittest.TestCase):
         r: int = 2
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
-        expected_result: list = [['a','b'],['a','c'],['a','d'],['b','c'],['b','d'],['c','d']]
+        expected_result: list = [['a', 'b'], ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd'], ['c', 'd']]
         self.assertEqual(combinations_r_result, expected_result)
 
 

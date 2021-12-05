@@ -17,7 +17,7 @@ def n_choose_r(n: int, r: int) -> int:
     if n < 0:
         raise ValueError('n must be greater than or equal to zero')
 
-    return int(math.factorial(n) / (math.factorial(r) * math.factorial(n-r)))
+    return int(math.factorial(n) / (math.factorial(r) * math.factorial(n - r)))
 
 
 def list_combinations(source: list) -> list:
@@ -91,18 +91,17 @@ def list_combinations(source: list) -> list:
 def combinations_r(source: list, r: int) -> list:
     """List of all combinations of length r in a source list of length n"""
     n: int = len(source)
-    # print(f'n: {n}')
-
-    r_lists: list = [[] for i in range(0, n)]
 
     if n == 0 or r == 0:
         return list([])
 
+    r_lists: list = [[] for i in range(0, n)]
+    base_list: list = source
+
     if r == 1:
         for i in range(0, n):
-            r_lists[i] = list(source[i])
+            r_lists[i] = list(base_list[i])
         return r_lists
-
 
 
 if __name__ == '__main__':

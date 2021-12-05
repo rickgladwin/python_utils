@@ -3,7 +3,6 @@
 #
 # To run the service, `flask run` on the command line.
 # To run with debugger and reloader active, `export FLASK_ENV=development` beforehand
-import flask
 
 from modules.sayhello_test_module import hi_message
 from modules.partitional import Partitional
@@ -16,9 +15,17 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 
+def build_data_object(result):
+    data_object: dict = {
+        'data_type': type(result).__name__,
+        'result': result,
+    }
+    return data_object
+
+
 @app.route('/')
 def hello_world_from_app():
-    return '<h1>hello world</h1>'
+    return '<h1>Python Utilities are available via Flask!</h1>'
 
 
 @app.route('/hello')
@@ -27,11 +34,14 @@ def default_fn():
 
 
 @app.route('/add', methods=['GET'])
+# e.g. /add?m=2&n=3 -> 5
 def add():
     m:int = int(request.args.get('m'))
     n:int = int(request.args.get('n'))
-    sum:str = str(add_two_numbers(m,n))
-    return sum
+
+    result: int = add_two_numbers(m,n)
+
+    return build_data_object(result)
 
 
 @app.route('/primes/nth_prime', methods=['GET'])
@@ -39,7 +49,9 @@ def primes_nth_prime():
     primes = Primes()
     n:int = int(request.args.get('n'))
     nth_prime:int = primes.nth_prime_number(n)
-    return str(nth_prime)
+
+    return build_data_object(nth_prime)
+    # return str(nth_prime)
 
 
 @app.route('/partitional/partition_set', methods=['GET'])
