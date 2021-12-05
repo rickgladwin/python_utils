@@ -8,6 +8,9 @@ from . import combinations as c
 # to run using green:
 # from project root:
 # green
+# target specific test (in general, dotted names):
+# green modules.combinations_test.CombinationsTest
+# green modules.combinations_test.NChooseRTest
 
 # nCr == "n choose r" == number of combinations of r items from n objects (order doesn't matter)
 
@@ -34,14 +37,14 @@ class NChooseRTest(unittest.TestCase):
 
 class CombinationsTest(unittest.TestCase):
     def test_returns_an_empty_list_for_an_empty_input_list(self):
-        input_set: list = list()
-        combinations_result: list = c.list_combinations(input_set)
+        input_list: list = list()
+        combinations_result: list = c.list_combinations(input_list)
         expected_combinations: list = list([])
         self.assertEqual(combinations_result, expected_combinations)
 
     def test_returns_a_list_of_length_one_for_input_of_length_one(self):
-        input_set: list = ['hello']
-        combinations_result: list = c.list_combinations(input_set)
+        input_list: list = ['hello']
+        combinations_result: list = c.list_combinations(input_list)
         expected_combinations: list = [[], ['hello']]
         self.assertEqual(combinations_result, expected_combinations)
 
@@ -56,6 +59,40 @@ class CombinationsTest(unittest.TestCase):
         ]
         print(f'expected_combinations:             {expected_combinations}')
         self.assertEqual(combinations_result, expected_combinations)
+
+
+class CombinationsRTest(unittest.TestCase):
+    def test_returns_an_empty_list_for_an_empty_input_list_and_positive_r(self):
+        input_list: list = list()
+        r: int = 2
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = list([])
+        self.assertEqual(combinations_r_result, expected_result)
+
+    def test_returns_an_empty_list_for_r_equals_0(self):
+        input_list: list = ['a','b','c']
+        r: int = 0
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = list([])
+        self.assertEqual(combinations_r_result, expected_result)
+
+    def test_returns_a_list_of_lists_of_the_input_elements_for_r_equals_1(self):
+        input_list: list = ['a', 'b', 'c']
+        r: int = 1
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = [['a'], ['b'], ['c']]
+        self.assertEqual(combinations_r_result, expected_result)
+
+    def test_returns_a_list_of_length_2_combinations(self):
+        input_list: list = ['a', 'b', 'c', 'd']
+        r: int = 2
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = [['a','b'],['a','c'],['a','d'],['b','c'],['b','d'],['c','d']]
+        self.assertEqual(combinations_r_result, expected_result)
 
 
 if __name__ == '__main__':
