@@ -111,7 +111,7 @@ class CombinationsRTest(unittest.TestCase):
         expected_result: list = list([])
         self.assertEqual(combinations_r_result, expected_result)
 
-    def test_returns_a_list_of_lists_of_the_input_elements_for_r_equals_1(self):
+    def test_returns_a_list_of_length_1_combinations(self):
         input_list: list = ['a', 'b', 'c']
         r: int = 1
         combinations_r_result: list = c.combinations_r(input_list, r)
@@ -124,7 +124,7 @@ class CombinationsRTest(unittest.TestCase):
         r: int = 2
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
-        expected_result: list = [['a', 'b'], ['a', 'c'], ['a', 'd'], ['b', 'c'], ['b', 'd'], ['c', 'd']]
+        expected_result: list = [['a', 'b'], ['b', 'c'], ['a', 'c'], ['c', 'd'], ['b', 'd'], ['a', 'd']]
         self.assertEqual(combinations_r_result, expected_result)
 
 

@@ -164,11 +164,11 @@ class Partitional(list):
 
             # build the sets
             # print(f'*** building set with n={n}, x={x}')
-            if x>1:
+            if x > 1:
                 new_partitions: list = self.__add_partitioned_elements(self.partition_set(n - 1, x - 1), n, x)
                 for new_partition in new_partitions:
                     self.pascals_partitions[n - 1][x - 1].append(new_partition)
-            if x<n:
+            if x < n:
                 new_partitions: list = self.__add_elements_to_last_partitions(self.partition_set(n - 1, x), n, x)
                 for new_partition in new_partitions:
                     self.pascals_partitions[n - 1][x - 1].append(new_partition)

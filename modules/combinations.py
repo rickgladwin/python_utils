@@ -1,4 +1,5 @@
 import math
+import copy
 
 
 def n_choose_r(n: int, r: int) -> int:
@@ -11,10 +12,10 @@ def n_choose_r(n: int, r: int) -> int:
     if r == n:
         return 1
 
-    if r > n:
+    if r>n:
         raise ValueError('r must be less than or equal to n')
 
-    if n < 0:
+    if n<0:
         raise ValueError('n must be greater than or equal to zero')
 
     return int(math.factorial(n) / (math.factorial(r) * math.factorial(n - r)))
@@ -92,22 +93,69 @@ def combinations_r(source: list, r: int) -> list:
     """List of all combinations of length r in a source list of length n"""
     n: int = len(source)
 
+    # Guards
     if r < 0 or n < 0:
-        raise ValueError(f'n ({n}) and r ({r}) must be greater or equal to 0')
+        raise ValueError(f'n ({n}) and r ({r}) must be greater than or equal to 0')
 
     if n < r:
         raise ValueError(f'n ({n}) must be greater than or equal to r ({r})')
 
+    # r == 0 ✓
     if n == 0 or r == 0:
         return list([])
 
-    base_list: list = source
-    r_lists: list = [[] for i in range(0, n)]
+    # Build a list of n empty lists of n empty lists
+    # NOTE: r_lists is zero-indexed, while r itself starts at 1
+    r_lists: list = [[[] for j in range(0, n)] for i in range(0, n)]
+    print(f'r_lists init: {r_lists}')
 
-    if r == 1:
-        for i in range(0, n):
-            r_lists[i] = list(base_list[i])
-        return r_lists
+    # The base list is an indexed list of the individual elements from the source list.
+    # It will be referenced when building combinations.
+    base_list: list = source
+
+    # for i in range(0, r):
+    #     for j in range (r-1,)
+    #     r_lists[i] = list(base_list[i])
+
+    # r == 1
+    # TODO: generalize this with a single equation over all r?
+    for i in range(0, 1):  # (0 to r - 1 inclusive, i.e. 0 for r == 1)
+        for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3)
+            r_lists[i][j] = list(base_list[j])  # [[base_list[0]], [base_list[1]], [base_list[2]]
+            print(f'i: {i}, j: {j}')
+            print(f'r_lists[i][j] after: {r_lists[i][j]}')
+
+    print(f'after r == 1: {r_lists}')
+
+    # r == 2
+    for i in range(1, 2):  # (1 to r - 1 inclusive, i.e. 1 for r == 2)
+        for j in range(i, n):  # (1 to n-1 inclusive, i.e. 1 to 2 for n == 3)
+            for k in range(1, j + 1):  # (k is not used as a list index directly, hence 1 to j + 1)
+                print(f'i: {i}, j: {j}, k: {k}')
+                r_lists_previous: list = copy.deepcopy(r_lists[i - 1][j - k])
+                print(f'r_lists_previous: {r_lists_previous}')
+                print(f'base_list[j]: {base_list[j]}')
+                print(f'append: {r_lists_previous.append(base_list[j])}')
+                print(f'appended: {r_lists_previous}')
+                print(f'r_lists[i][j] before: {r_lists[i][j]}')
+                r_lists[i][j].append(r_lists_previous)
+                print(f'r_lists[i][j] after: {r_lists[i][j]}')
+
+    for i in range(0, n):
+        print(f'\nr_lists[{i}]: {r_lists[i]}')
+
+    # consolidate all combinations in i
+    # TODO: range from 0 to n
+    r_consolidated: list = [[] for i in range(0, 2)]
+    for i in range(0, n):
+        for j in range(0, len(r_lists[i])):
+            if r_lists[i][j]:
+                for k in range(0, len(r_lists[i][j])):
+                    r_consolidated[i].append(r_lists[i][j][k])
+
+    print(f'r_consolidated: {r_consolidated}')
+    # r_lists is zero-indexed, so r --> [r - 1]
+    return r_consolidated[r - 1]
 
 
 if __name__ == '__main__':
