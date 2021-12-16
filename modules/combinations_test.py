@@ -127,6 +127,15 @@ class CombinationsRTest(unittest.TestCase):
         expected_result: list = [['a', 'b'], ['b', 'c'], ['a', 'c'], ['c', 'd'], ['b', 'd'], ['a', 'd']]
         self.assertEqual(combinations_r_result, expected_result)
 
+    def test_returns_a_list_of_length_3_combinations(self):
+        input_list: list = ['a', 'b', 'c', 'd']
+        r: int = 3
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = [['a', 'b', 'c'], ['a', 'b', 'd'], ['a', 'c', 'd'], ['b', 'c', 'd']]
+        print(f'expected_result: {expected_result}')
+        self.assertEqual(combinations_r_result, expected_result)
+
 
 if __name__ == '__main__':
     unittest.main()

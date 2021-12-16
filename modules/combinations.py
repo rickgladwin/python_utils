@@ -121,14 +121,29 @@ def combinations_r(source: list, r: int) -> list:
     # TODO: generalize this with a single equation over all r?
     for i in range(0, 1):  # (0 to r - 1 inclusive, i.e. 0 for r == 1)
         for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3)
-            r_lists[i][j] = list(base_list[j])  # [[base_list[0]], [base_list[1]], [base_list[2]]
-            print(f'i: {i}, j: {j}')
-            print(f'r_lists[i][j] after: {r_lists[i][j]}')
+            for k in range(1, j + 1):
+                print(f'i: {i}, j: {j}, k: {k}')
+                r_lists_previous: list = [[]]
 
-    print(f'after r == 1: {r_lists}')
+                print(f'r_lists_previous: {r_lists_previous}')
+                print(f'base_list[j]: {base_list[j]}')
+                print(f'append: {r_lists_previous.append(base_list[j])}')
+                print(f'appended: {r_lists_previous}')
+                print(f'r_lists[i][j] before: {r_lists[i][j]}')
+                r_lists[i][j].append(r_lists_previous)
+                print(f'r_lists[i][j] after: {r_lists[i][j]}')
+
+                # print(f'r_lists[i][j] before: {r_lists[i][j]}')
+                # r_lists[i][j].append(list(base_list[j]))  # [[base_list[0]], [base_list[1]], [base_list[2]]
+                # print(f'r_lists[i][j] after: {r_lists[i][j]}')
+
+    print(f'\n--------------- r_lists[0] -----------------')
+    print(f'after r == 1: {r_lists[0]}')
+    print(f'r_lists[0][1][0]: {r_lists[0][1][0]}')
 
     # r == 2
     for i in range(1, 2):  # (1 to r - 1 inclusive, i.e. 1 for r == 2)
+        print(f'\n--------------- r_lists[{i}] -----------------')
         for j in range(i, n):  # (1 to n-1 inclusive, i.e. 1 to 2 for n == 3)
             for k in range(1, j + 1):  # (k is not used as a list index directly, hence 1 to j + 1)
                 print(f'i: {i}, j: {j}, k: {k}')
