@@ -136,13 +136,22 @@ def combinations_r(source: list, r: int) -> list:
     print(f'----- done r == 1')
     print(f'----- r_lists: {r_lists}')
 
-    # TODO: generalize this with a single equation over all r?
-    # for i in range(0, 1):  # (0 to r - 1 inclusive, i.e. 0 for r == 1)
-    #     for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3)
-    #         for k in range(0, j + 1):
-    #             print(f'i: {i}, j: {j}, k: {k}')
-    #             r_lists_previous: list = [[[]]]
-    #
+    # r == 2
+    # For groups of 2 onward, build recursively using the previous r_lists[i] values
+
+    for i in range(1, 2):  # (0 to r - 1 inclusive, i.e. 0 for r == 1) - combinations of i + 1
+        for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3) - this list's nodes
+            for m in range(i - 1, j):  # (i - 1 to j - 1 inclusive) - the lines from the previous list's nodes
+                print(f'i: {i}, j: {j}, m: {m}')
+
+                # we are building and appending new elements to r_lists[i][j], which will be referenced as
+                # r_lists[i][j][k]
+
+                # TODO: write this part of the algorithm
+                # for each element k in i - 1, j??, m?? (previous i list nodes)
+                #  append base_list[j] to r_lists[i - 1][m][k]
+                #  push the result to r_lists[i][j] (as r_lists[i][j][k])
+
     #             print(f'r_lists_previous: {r_lists_previous}')
     #             print(f'base_list[j]: {base_list[j]}')
     #             print(f'append: {r_lists_previous.append(base_list[j])}')
@@ -180,7 +189,7 @@ def combinations_r(source: list, r: int) -> list:
     # consolidate all combinations in i
     # TODO: range from 0 to n
     r_consolidated: list = [[] for i in range(0, 1)]
-    for i in range(0, 1):
+    for i in range(0, n):
         for j in range(0, len(r_lists[i])):
             if r_lists[i][j]:
                 for k in range(0, len(r_lists[i][j])):
