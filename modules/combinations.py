@@ -149,7 +149,7 @@ def combinations_r(source: list, r: int) -> list:
     # r == 2
     # For groups of 2 onward, build recursively using the previous r_lists[i] values
 
-    for i in range(1, 2):  # (0 to r - 1 inclusive, i.e. 0 for r == 1) - combinations of i + 1
+    for i in range(1, n):  # (0 to r - 1 inclusive, i.e. 0 for r == 1) - combinations of i + 1
         for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3) - this list's nodes
             # build and append this node's elements
             for m in range(i - 1, j):  # (i - 1 to j - 1 inclusive) - the lines from the previous list's nodes
@@ -170,6 +170,10 @@ def combinations_r(source: list, r: int) -> list:
                 k_concat = copy.deepcopy(k_list)
                 print(f'for i={i}, j={j}, m={m} k_list = {k_list}')
                 print(f'len(k_list) = {len(k_list)}')
+                # TODO: ensure there's the right depth at each i,j (add a level to the list with r==1 ?)
+                # TODO: ensure there's the same depth at each i,j
+                # TODO: iterate through each of the elements in the list at i,j
+                #  and/or make sure the IndexErrors are taken care of
                 for q in range(0, len(k_list)):
                     print(f'-- appending base_list[{j}] ({base_list[j]}) to k_list {k_list}')
                     print(f'-- r_lists[{i}][{j}] before: {r_lists[i][j]}')
