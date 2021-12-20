@@ -217,10 +217,14 @@ def combinations_r(source: list, r: int) -> list:
 
     # consolidate all combinations in i
     # TODO: range from 0 to n
+    print(f'\n consolidating...')
     r_consolidated: list = [[] for i in range(0, 1)]
-    for i in range(0, n):
+    for i in range(0, 2):
         for j in range(0, len(r_lists[i])):
             if r_lists[i][j]:
+                print(f'&&&& r_lists[{i}][{j}]: {r_lists[i][j]}')
+                print(f'len(r_lists[{i}][{j}]): {len(r_lists[i][j])}')
+                # r_consolidated[i].append(r_lists[i][j])
                 for k in range(0, len(r_lists[i][j])):
                     if r_lists[i][j][k]:
                         r_consolidated[i].append([r_lists[i][j][k]])
