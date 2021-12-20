@@ -105,18 +105,20 @@ def combinations_r(source: list, r: int) -> list:
         return list([])
 
     # Build a list of n empty lists of n empty lists of n empty lists (i,j,k)
+    # (validates those indexes so they can be iterated over. The alternative
+    #  is to append as we go, which requires predetermining the indexes for the iterators)
     # NOTE: r_lists is zero-indexed, while r itself starts at 1
-    r_lists: list = [[[[] for k in range(0, n)] for j in range(0, n)] for i in range(0, n)]
+    r_lists: list = [[[] for j in range(0, n)] for i in range(0, n)]
     print(f'r_lists init: {r_lists}')
 
     # The base list is an indexed list of the individual elements from the source list.
     # It will be referenced when building combinations.
     base_list: list = source
     print(f'base_list: {base_list}')
-    print(f'r_lists: {r_lists}')
+    # print(f'r_lists: {r_lists}')
     print(f'r_lists[0]: {r_lists[0]}')
     print(f'r_lists[0][0]: {r_lists[0][0]}')
-    print(f'r_lists[0][0][0]: {r_lists[0][0][0]}')
+    # print(f'r_lists[0][0][0]: {r_lists[0][0][0]}')
 
     # for i in range(0, r):
     #     for j in range (r-1,)
@@ -130,27 +132,54 @@ def combinations_r(source: list, r: int) -> list:
             for k in range(0, i + 1):
                 print(f'i, j, k: {i}, {j}, {k}')
                 print(f'-- base_list[{j}] = {base_list[j]}')
-                r_lists[i][j][k] = base_list[j]
+                r_lists[i][j].append(base_list[j])
                 print(f'------ r_lists[{i}][{j}][{k}] = {r_lists[i][j][k]}')
+
+    # filter empty lists in the finished r
+    r_lists[0] = clean_r_list_i(r_lists[0])
 
     print(f'----- done r == 1')
     print(f'----- r_lists: {r_lists}')
+    print(f'r_lists[0]: {r_lists[0]}')
+    print(f'r_lists[0][0]: {r_lists[0][0]}')
+
+    print(f'\n*********\n')
+    # print(f'r_lists[0][0][0]: {r_lists[0][0][0]}')
 
     # r == 2
     # For groups of 2 onward, build recursively using the previous r_lists[i] values
 
     for i in range(1, 2):  # (0 to r - 1 inclusive, i.e. 0 for r == 1) - combinations of i + 1
         for j in range(i, n):  # (0 to n-1 inclusive, i.e. 0 to 2 for n == 3) - this list's nodes
+            # build and append this node's elements
             for m in range(i - 1, j):  # (i - 1 to j - 1 inclusive) - the lines from the previous list's nodes
                 print(f'i: {i}, j: {j}, m: {m}')
 
                 # we are building and appending new elements to r_lists[i][j], which will be referenced as
                 # r_lists[i][j][k]
+                # NOTE: these elements are, themselves, lists. E.g. 'abc' is represented as ['a','b','c']
 
-                # TODO: write this part of the algorithm
-                # for each element k in i - 1, j??, m?? (previous i list nodes)
+                # for each (list) element k in r_lists[i - 1][m] (previous i list nodes)
                 #  append base_list[j] to r_lists[i - 1][m][k]
-                #  push the result to r_lists[i][j] (as r_lists[i][j][k])
+                #  push the resulting list to r_lists[i][j] (as r_lists[i][j][k])
+
+                k_list: list = r_lists[i - 1][m]
+                # remove any empty elements in k_list
+                # k_list = list(filter(None, k_list))
+                k_list = list(filter(None, k_list))
+                k_concat = copy.deepcopy(k_list)
+                print(f'for i={i}, j={j}, m={m} k_list = {k_list}')
+                print(f'len(k_list) = {len(k_list)}')
+                for q in range(0, len(k_list)):
+                    print(f'-- appending base_list[{j}] ({base_list[j]}) to k_list {k_list}')
+                    print(f'-- r_lists[{i}][{j}] before: {r_lists[i][j]}')
+                    # k_concat.append()
+                    # k_concat.append(k_list)
+                    k_concat.append(base_list[j])
+                    r_lists[i][j].append(k_concat)
+                    print(f'-- result: {r_lists[i][j]}')
+
+    print(f'\n****** r_lists built: {r_lists}')
 
     #             print(f'r_lists_previous: {r_lists_previous}')
     #             print(f'base_list[j]: {base_list[j]}')
@@ -196,9 +225,16 @@ def combinations_r(source: list, r: int) -> list:
                     if r_lists[i][j][k]:
                         r_consolidated[i].append([r_lists[i][j][k]])
 
-    print(f'------------- r_consolidated: {r_consolidated}')
+    print(f'\n------------- r_consolidated: {r_consolidated}')
     # r_lists is zero-indexed, so r --> [r - 1]
     return r_consolidated[r - 1]
+
+
+def clean_r_list_i(r_list_i: list) -> list:
+    """remove empty list elements from a list"""
+    for j in range(0, len(r_list_i)):
+        r_list_i[j] = list(filter(lambda k: k != [], r_list_i[j]))
+    return r_list_i
 
 
 if __name__ == '__main__':
