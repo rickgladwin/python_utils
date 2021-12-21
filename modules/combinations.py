@@ -132,7 +132,7 @@ def combinations_r(source: list, r: int) -> list:
             for k in range(0, i + 1):
                 print(f'i, j, k: {i}, {j}, {k}')
                 print(f'-- base_list[{j}] = {base_list[j]}')
-                r_lists[i][j].append(base_list[j])
+                r_lists[i][j].append([base_list[j]])
                 print(f'------ r_lists[{i}][{j}][{k}] = {r_lists[i][j][k]}')
 
     # filter empty lists in the finished r
@@ -142,9 +142,9 @@ def combinations_r(source: list, r: int) -> list:
     print(f'----- r_lists: {r_lists}')
     print(f'r_lists[0]: {r_lists[0]}')
     print(f'r_lists[0][0]: {r_lists[0][0]}')
+    print(f'r_lists[0][0][0]: {r_lists[0][0][0]}')
 
     print(f'\n*********\n')
-    # print(f'r_lists[0][0][0]: {r_lists[0][0][0]}')
 
     # r == 2
     # For groups of 2 onward, build recursively using the previous r_lists[i] values
@@ -164,9 +164,14 @@ def combinations_r(source: list, r: int) -> list:
                 #  push the resulting list to r_lists[i][j] (as r_lists[i][j][k])
 
                 k_list: list = r_lists[i - 1][m]
+
+                print(f'$$$$$$$$ current k_list = {k_list}')
                 # remove any empty elements in k_list
                 # k_list = list(filter(None, k_list))
-                k_list = list(filter(None, k_list))
+                filter(None, k_list)
+                print(f'$$$$$$$$ FILTERED current k_list = {k_list}')
+                # TODO: extract k_list ELEMENTS, append to that OR
+                #  append the base_list element "into" k_list
                 k_concat = copy.deepcopy(k_list)
                 print(f'for i={i}, j={j}, m={m} k_list = {k_list}')
                 print(f'len(k_list) = {len(k_list)}')
@@ -175,12 +180,12 @@ def combinations_r(source: list, r: int) -> list:
                 # TODO: iterate through each of the elements in the list at i,j
                 #  and/or make sure the IndexErrors are taken care of
                 for q in range(0, len(k_list)):
-                    print(f'-- appending base_list[{j}] ({base_list[j]}) to k_list {k_list}')
+                    print(f'-- appending base_list[{j}] ({base_list[j]}) to k_list element {k_concat[q]}')
                     print(f'-- r_lists[{i}][{j}] before: {r_lists[i][j]}')
                     # k_concat.append()
                     # k_concat.append(k_list)
-                    k_concat.append(base_list[j])
-                    r_lists[i][j].append(k_concat)
+                    k_concat[q].append(base_list[j])
+                    r_lists[i][j].append(k_concat[q])
                     print(f'-- result: {r_lists[i][j]}')
 
     print(f'\n****** r_lists built: {r_lists}')
@@ -221,17 +226,28 @@ def combinations_r(source: list, r: int) -> list:
 
     # consolidate all combinations in i
     # TODO: range from 0 to n
-    print(f'\n consolidating...')
-    r_consolidated: list = [[] for i in range(0, 1)]
-    for i in range(0, 2):
+    print(f'\n consolidating r_lists...')
+    print(f'r_lists before consolidation:')
+    print(f'len(r_lists) = {len(r_lists)}')
+
+    for i in range(0, len(r_lists)):
+        for j in range(0, len(r_lists[i])):
+            for k in range(0, len(r_lists[i][j])):
+                print(f'r_lists[{i}][{j}][{k}] = {r_lists[i][j][k]}')
+
+    r_consolidated: list = [[] for i in range(0, len(r_lists))]
+    for i in range(0, len(r_lists)):
         for j in range(0, len(r_lists[i])):
             if r_lists[i][j]:
                 print(f'&&&& r_lists[{i}][{j}]: {r_lists[i][j]}')
-                print(f'len(r_lists[{i}][{j}]): {len(r_lists[i][j])}')
+                print(f'&&&& len(r_lists[{i}][{j}]): {len(r_lists[i][j])}')
                 # r_consolidated[i].append(r_lists[i][j])
                 for k in range(0, len(r_lists[i][j])):
                     if r_lists[i][j][k]:
-                        r_consolidated[i].append([r_lists[i][j][k]])
+                        print(f'^^^^ r_lists[{i}][{j}][{k}] = {r_lists[i][j][k]}')
+                        r_consolidated[i].append(r_lists[i][j][k])
+                        # r_consolidated[i].append(r_lists[i][j])
+                        # r_consolidated.append(r_lists[i])
 
     print(f'\n------------- r_consolidated: {r_consolidated}')
     # r_lists is zero-indexed, so r --> [r - 1]
