@@ -8,7 +8,7 @@ from modules.sayhello_test_module import hi_message
 from modules.partitional import Partitional
 from modules.sayhello_test_module import add_two_numbers
 from modules.primes import Primes
-from modules.combinations import n_choose_r
+from modules.combinations import n_choose_r, combinations, combinations_r
 
 from flask import Flask, request, Response
 
@@ -69,6 +69,7 @@ def partitional__partition_set():
 
 @app.route('/combinations/n_choose_r', methods=['GET'])
 def combinations__n_choose_r():
+    """e.g. http://127.0.0.1:5000/combinations/n_choose_r?n=3&r=2"""
     n: int = int(request.args.get('n'))
     r: int = int(request.args.get('r'))
 
@@ -79,9 +80,20 @@ def combinations__n_choose_r():
 
 @app.route('/combinations/combinations_r', methods=['GET'])
 def combinations__combinations_r():
-    n: int = int(request.args.get('n'))
+    """e.g. http://127.0.0.1:5000/combinations/combinations_r?source_list=a|b|c&r=2"""
+    source_list: list = request.args.get('source_list').split('|')
     r: int = int(request.args.get('r'))
 
-    result: int = n_choose_r(n, r)
+    result: list = combinations_r(source_list, r)
+
+    return build_data_object(result)
+
+
+@app.route('/combinations/combinations', methods=['GET'])
+def combinations__combinations():
+    """e.g. http://127.0.0.1:5000/combinations/combinations_r?source_list=a|b|c"""
+    source_list: list = request.args.get('source_list').split('|')
+
+    result: list = combinations(source_list)
 
     return build_data_object(result)
