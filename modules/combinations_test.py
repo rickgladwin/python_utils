@@ -124,7 +124,9 @@ class CombinationsRTest(unittest.TestCase):
         r: int = 2
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
-        expected_result: list = [['a', 'b'], ['b', 'c'], ['a', 'c'], ['c', 'd'], ['b', 'd'], ['a', 'd']]
+        # expected_result: list = [['a', 'b'], ['b', 'c'], ['a', 'c'], ['c', 'd'], ['b', 'd'], ['a', 'd']]
+        # TODO: compare two lists and ignore element order
+        expected_result: list = [['a', 'b'], ['a', 'c'], ['b', 'c'], ['a', 'd'], ['b', 'd'], ['c', 'd']]
         self.assertEqual(combinations_r_result, expected_result)
 
     def test_returns_a_list_of_length_3_combinations(self):
