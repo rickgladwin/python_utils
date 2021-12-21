@@ -37,14 +37,6 @@ class NChooseRTest(unittest.TestCase):
 
 
 class CombinationsTest(unittest.TestCase):
-    def test_throws_value_error_for_n_or_r_less_than_zero(self):
-        try:
-            c.n_choose_r(n=-1, r=5)
-        except ValueError:
-            self.assertTrue(1, 1)
-            return
-        self.fail('no exception raised')
-
     def test_returns_an_empty_list_for_an_empty_input_list(self):
         input_list: list = list()
         combinations_result: list = c.list_combinations(input_list)
@@ -135,6 +127,31 @@ class CombinationsRTest(unittest.TestCase):
         combinations_r_result: list = c.combinations_r(input_list, r)
         print(f'combinations_r_result: {combinations_r_result}')
         expected_result: list = [['a', 'b', 'c'], ['a', 'b', 'd'], ['a', 'c', 'd'], ['b', 'c', 'd']]
+        print(f'expected_result: {expected_result}')
+        self.assertEqual(combinations_r_result, expected_result)
+
+    def test_returns_a_list_of_length_4_combinations(self):
+        input_list: list = ['a', 'b', 'c', 'd', 'e', 'f']
+        r: int = 4
+        combinations_r_result: list = c.combinations_r(input_list, r)
+        print(f'combinations_r_result: {combinations_r_result}')
+        expected_result: list = [
+            ['a', 'b', 'c', 'd'],
+            ['a', 'b', 'c', 'e'],
+            ['a', 'b', 'd', 'e'],
+            ['a', 'c', 'd', 'e'],
+            ['b', 'c', 'd', 'e'],
+            ['a', 'b', 'c', 'f'],
+            ['a', 'b', 'd', 'f'],
+            ['a', 'c', 'd', 'f'],
+            ['b', 'c', 'd', 'f'],
+            ['a', 'b', 'e', 'f'],
+            ['a', 'c', 'e', 'f'],
+            ['b', 'c', 'e', 'f'],
+            ['a', 'd', 'e', 'f'],
+            ['b', 'd', 'e', 'f'],
+            ['c', 'd', 'e', 'f'],
+        ]
         print(f'expected_result: {expected_result}')
         self.assertEqual(combinations_r_result, expected_result)
 
