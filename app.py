@@ -37,10 +37,10 @@ def default_fn():
 @app.route('/add', methods=['GET'])
 # e.g. /add?m=2&n=3 -> 5
 def add():
-    m:int = int(request.args.get('m'))
-    n:int = int(request.args.get('n'))
+    m: int = int(request.args.get('m'))
+    n: int = int(request.args.get('n'))
 
-    result: int = add_two_numbers(m,n)
+    result: int = add_two_numbers(m, n)
 
     return build_data_object(result)
 
@@ -48,9 +48,9 @@ def add():
 @app.route('/primes/nth_prime', methods=['GET'])
 def primes__nth_prime():
     primes = Primes()
-    n:int = int(request.args.get('n'))
+    n: int = int(request.args.get('n'))
 
-    nth_prime:int = primes.nth_prime_number(n)
+    nth_prime: int = primes.nth_prime_number(n)
 
     return build_data_object(nth_prime)
 
