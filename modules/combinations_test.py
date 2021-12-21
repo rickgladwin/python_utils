@@ -98,25 +98,19 @@ class CombinationsTest(unittest.TestCase):
         self.assertEqual(combinations_result, expected_combinations)
 
 class CombinationsRTest(unittest.TestCase):
-    def test_throws_value_error_for_n_less_than_zero(self):
-        try:
-            c.n_choose_r(n=-1, r=5)
-        except ValueError:
-            self.assertTrue(1, 1)
-            return
-        self.fail('no exception raised for n less than 0')
-
     def test_throws_value_error_for_r_less_than_zero(self):
+        input_list: list = ['a', 'b', 'c']
         try:
-            c.n_choose_r(n=10, r=-5)
+            c.combinations_r(source=input_list, r=-5)
         except ValueError:
             self.assertTrue(1, 1)
             return
         self.fail('no exception raised for r less than 0')
 
     def test_throws_value_error_for_n_less_than_r(self):
+        input_list: list = ['a', 'b', 'c', 'd']
         try:
-            c.n_choose_r(n=10, r=11)
+            c.combinations_r(source=input_list, r=6)
         except ValueError:
             self.assertTrue(1, 1)
             return
