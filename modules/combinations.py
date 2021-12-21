@@ -235,6 +235,8 @@ def combinations_r(source: list, r: int) -> list:
             for k in range(0, len(r_lists[i][j])):
                 print(f'r_lists[{i}][{j}][{k}] = {r_lists[i][j][k]}')
 
+    # create a list with index i that consolidates all lists of length i at r_consolidated[i]
+    # this is a formatting step for the return object
     r_consolidated: list = [[] for i in range(0, len(r_lists))]
     for i in range(0, len(r_lists)):
         for j in range(0, len(r_lists[i])):
