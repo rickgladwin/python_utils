@@ -93,9 +93,8 @@ class CombinationsTest(unittest.TestCase):
         input_list: list = [i for i in range(0, 11)]
         combinations_result: list = c.combinations(source=input_list)
         expected_combinations: list = n_equals_10_combinations
-        # print(f'combinations_result:               {combinations_result}')
-        # print(f'expected_combinations:             {expected_combinations}')
         self.assertEqual(combinations_result, expected_combinations)
+
 
 class CombinationsRTest(unittest.TestCase):
     def test_throws_value_error_for_r_less_than_zero(self):
