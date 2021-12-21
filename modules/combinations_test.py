@@ -72,6 +72,22 @@ class CombinationsTest(unittest.TestCase):
         print(f'combinations_result:               {combinations_result}')
         print(f'expected_combinations:             {expected_combinations}')
         self.assertEqual(combinations_result, expected_combinations)
+        
+    def test_returns_a_list_of_dictionary_combinations(self):
+        input_list: list = [
+            {'key_1': 'value_1'},
+            {'key_2': 'value_2'},
+            {'key_3': 'value_3'},
+        ]
+        combinations_result: list = c.combinations(source=input_list)
+        expected_combinations: list = [
+            [[{'key_1': 'value_1'}], [{'key_2': 'value_2'}], [{'key_3': 'value_3'}]],  # r = 1
+            [[{'key_1': 'value_1'}, {'key_2': 'value_2'}], [{'key_1': 'value_1'}, {'key_3': 'value_3'}], [{'key_2': 'value_2'}, {'key_3': 'value_3'}]],  # r = 2
+            [[{'key_1': 'value_1'}, {'key_2': 'value_2'}, {'key_3': 'value_3'}]]  # r = 3
+        ]
+        print(f'combinations_result:               {combinations_result}')
+        print(f'expected_combinations:             {expected_combinations}')
+        self.assertEqual(combinations_result, expected_combinations)
 
     def test_returns_a_large_list_of_integer_combinations_for_positive_unequal_n_and_r(self):
         input_list: list = [i for i in range(0, 11)]
