@@ -94,6 +94,8 @@ def combinations__combinations():
     """e.g. http://127.0.0.1:5000/combinations/combinations_r?source_list=a|b|c"""
     source_list: list = request.args.get('source_list').split('|')
 
+    # TODO: if the source_list elements are strings representing objects, convert them to dicts
+
     result: list = combinations(source_list)
 
     return build_data_object(result)
