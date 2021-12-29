@@ -141,7 +141,7 @@ class IsStringJsonObjectTest(unittest.TestCase):
 class StringJsonObjectToDictTest(unittest.TestCase):
     def test_converts_a_json_string_with_string_values_to_a_dict(self):
         source_string: str = '{ "key1": "value 1", "key2": "value 2" }'
-        expected_result: dict = {'key1':'value 1', 'key2':'value 2'}
+        expected_result: dict = {'key1': 'value 1', 'key2': 'value 2'}
 
         result: dict = a.string_json_object_to_dict(source_string)
 
@@ -149,7 +149,7 @@ class StringJsonObjectToDictTest(unittest.TestCase):
 
     def test_converts_a_spaceless_json_string_with_string_values_to_a_dict(self):
         source_string: str = '{"key1":"value 1","key2":"value 2"}'
-        expected_result: dict = {'key1':'value 1', 'key2':'value 2'}
+        expected_result: dict = {'key1': 'value 1', 'key2': 'value 2'}
 
         result: dict = a.string_json_object_to_dict(source_string)
 

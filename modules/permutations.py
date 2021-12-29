@@ -15,8 +15,3 @@ def n_permute_r(n: int, r: int) -> int:
         raise ValueError('r must be less than or equal to n')
 
     return int(math.factorial(n)/math.factorial(n-r))
-
-
-def permutations_set(source_set: set) -> set:
-    #
-    return source_set

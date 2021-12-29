@@ -27,30 +27,5 @@ class NPermuteRTest(unittest.TestCase):
         self.fail('no exception raised')
 
 
-class PermutationsTest(unittest.TestCase):
-    def test_returns_an_empty_set_for_an_empty_input_set(self):
-        input_set: set = set()
-        combinations_result: set = p.permutations_set(input_set)
-        expected_combinations: set = set()
-        self.assertEqual(combinations_result, expected_combinations)
-
-    def test_returns_a_set_of_length_one_for_input_of_length_one(self):
-        input_set: set = set('hello')
-        combinations_result: set = p.permutations_set(input_set)
-        expected_combinations: set = set('hello')
-        self.assertEqual(combinations_result, expected_combinations)
-
-    def test_returns_a_set_of_permutations_for_positive_unequal_integers(self):
-        input_items: set = {'a', 'b', 'c'}
-        permutations_result: set = p.permutations_set(source_set=input_items)
-        expected_permutations: set = {
-            {{'a'}, {'b'}, {'c'}},
-            {{'a', 'b'}, {'a', 'c'}, {'b', 'c'}, {'b', 'a'}, {'c', 'a'}, {'c', 'b'}},
-            {{'a', 'b', 'c'}},
-        }
-        # TODO: how to compare sets?
-        self.assertItemsEqual(permutations_result, expected_permutations)
-
-
 if __name__ == '__main__':
     unittest.main()
