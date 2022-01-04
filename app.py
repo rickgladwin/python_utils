@@ -3,14 +3,16 @@
 #
 # To run the service, `flask run` on the command line.
 # To run with debugger and reloader active, `export FLASK_ENV=development` beforehand
+import flask
 
+from app_helpers import is_string_json_object, is_string_object, string_json_object_to_dict
 from modules.sayhello_test_module import hi_message
 from modules.partitional import Partitional
 from modules.sayhello_test_module import add_two_numbers
 from modules.primes import Primes
 from modules.combinations import n_choose_r, combinations, combinations_r
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response, make_response
 
 # change this line if you want to use a different file as the root file for the Flask app
 app = Flask(__name__)
@@ -94,7 +96,26 @@ def combinations__combinations():
     """e.g. http://127.0.0.1:5000/combinations/combinations_r?source_list=a|b|c"""
     source_list: list = request.args.get('source_list').split('|')
 
-    # TODO: if the source_list elements are strings representing objects, convert them to dicts
+    # TODO: if the source_list elements are json strings representing objects, convert them to dicts
+
+    # If the source_list elements are objects, they need to be JSON in order for the
+    #  system to handle them successfully
+    source_list_elements_are_json_objects: bool = True
+    source_list_has_non_json_objects: bool = False
+    for i in range(0, len(source_list)):
+        if not is_string_json_object(source_list[i]):
+            source_list_elements_are_json_objects = False
+            if is_string_object(source_list[i]):
+                source_list_has_non_json_objects = True
+                break
+
+    if source_list_elements_are_json_objects:
+        for i in range(0, len(source_list)):
+            source_list[i] = string_json_object_to_dict(source_list[i])
+
+    if source_list_has_non_json_objects:
+        error_response = make_response('objects in the source list must be JSON formatted', 400)
+        return error_response
 
     result: list = combinations(source_list)
 
