@@ -4,16 +4,6 @@
 A Flask app that runs a microservice on the local machine providing
 access to python utilities via API endpoints.
 
-to run this in a virtual environment (from `venv` folder):
-
-- from project root:
-- `pip install virtualenv`
-- `virtualenv venv`
-- `source venv/bin/activate`
-- `python -m pip install <package>`
-- e.g. `python -m pip install green`
-
-
 ## Requirements
 
 - python 3.8 or higher (can be installed using `venv`)
@@ -22,8 +12,15 @@ see https://realpython.com/python-virtual-environments-a-primer/
 
 ## Install
 
-- install python 3.8
-- build the virtual environment based on the `/venv` folder
+To run this in a virtual environment (from `venv` folder):
+
+- from project root:
+- `pip install virtualenv`
+- `virtualenv venv`
+- `source venv/bin/activate`
+- `python -m pip install <package>`
+- e.g. `python -m pip install green`
+
 
 ## Run
 
