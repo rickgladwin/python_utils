@@ -16,7 +16,7 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 
-def build_data_object(result):
+def build_data_object(result) -> dict:
     data_object: dict = {
         'data_type': type(result).__name__,
         'result': result,
@@ -68,7 +68,7 @@ def partitional__partition_set():
 
 
 @app.route('/combinations/n_choose_r', methods=['GET'])
-def combinations__n_choose_r():
+def combinations__n_choose_r() -> dict:
     n: int = int(request.args.get('n'))
     r: int = int(request.args.get('r'))
 
