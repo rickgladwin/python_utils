@@ -48,9 +48,9 @@ e.g.
 ```html
 http://127.0.0.1:5000/primes/nth_prime/?n=12
 ```
-or, where an argument type is array/list:
+or, where an argument type is array/list (see /app.py for each route's syntax):
 ```html
-http://127.0.0.1:5000/primes/nth_prime/?n=12
+http://127.0.0.1:5000/combinations/combinations?source_list=1|2|3
 ```
 
 ### Returns
