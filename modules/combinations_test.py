@@ -95,6 +95,188 @@ class CombinationsTest(unittest.TestCase):
         expected_combinations: list = n_equals_10_combinations
         self.assertEqual(combinations_result, expected_combinations)
 
+    def test_returns_without_error_for_an_input_list_with_10_elements_of_1_character(self):
+        print(f'testing input list with 10 elements of 1 character...')
+        input_list: list = ['a' for i in range(0, 10)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 10 elements of 1 character')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_10_elements_of_2_characters(self):
+        print(f'testing input list with 10 elements of 2 characters...')
+        input_list: list = ['aa' for i in range(0, 10)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 10 elements of 2 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_10_elements_of_3_characters(self):
+        print(f'testing input list with 10 elements of 3 characters...')
+        input_list: list = ['aaa' for i in range(0, 10)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 10 elements of 3 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_10_elements_of_10_characters(self):
+        print(f'testing input list with 10 elements of 10 characters...')
+        input_list: list = ['aaaaaaaaaa' for i in range(0, 10)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 10 elements of 10 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_10_elements_of_50_characters(self):
+        print(f'testing input list with 10 elements of 50 characters...')
+        input_list: list = ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' for i in range(0, 10)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 10 elements of 50 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_20_elements_of_1_character(self):
+        print(f'testing input list with 20 elements of 1 character...')
+        input_list: list = ['a' for i in range(0, 20)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 20 elements of 1 character')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_20_elements_of_2_characters(self):
+        print(f'testing input list with 20 elements of 2 characters...')
+        input_list: list = ['aa' for i in range(0, 20)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 20 elements of 2 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_20_elements_of_3_characters(self):
+        print(f'testing input list with 20 elements of 3 characters...')
+        input_list: list = ['aaa' for i in range(0, 20)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 20 elements of 3 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_20_elements_of_10_characters(self):
+        print(f'testing input list with 20 elements of 10 characters...')
+        input_list: list = ['aaaaaaaaaa' for i in range(0, 20)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 20 elements of 10 characters')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_21_elements_of_1_character(self):
+        print(f'testing input list with 21 elements of 1 character...')
+        input_list: list = ['a' for i in range(0, 21)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 21 elements of 1 character')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_22_elements_of_1_character(self):
+        print(f'testing input list with 22 elements of 1 character...')
+        input_list: list = ['a' for i in range(0, 22)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 22 elements of 1 character')
+        self.assertTrue(1, 1)
+
+    def test_returns_without_error_for_an_input_list_with_23_elements_of_1_character(self):
+        print(f'testing input list with 23 elements of 1 character...')
+        input_list: list = ['a' for i in range(0, 23)]
+        combinations_result: list = c.combinations(source=input_list)
+        print(f'completed with 23 elements of 1 character')
+        self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_24_elements_of_1_character(self):
+    #     print(f'testing input list with 24 elements of 1 character...')
+    #     input_list: list = ['a' for i in range(0, 24)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 24 elements of 1 character')
+    #     self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_30_elements_of_1_character(self):
+    #     print(f'testing input list with 30 elements of 1 character...')
+    #     input_list: list = ['a' for i in range(0, 30)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 elements of 1 character')
+    #     self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_30_elements_of_2_characters(self):
+    #     print(f'testing input list with 30 elements of 2 characters...')
+    #     input_list: list = ['aa' for i in range(0, 30)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 elements of 2 characters')
+    #     self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_30_elements_of_3_characters(self):
+    #     print(f'testing input list with 30 elements of 3 characters...')
+    #     input_list: list = ['aaa' for i in range(0, 30)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 elements of 3 characters')
+    #     self.assertTrue(1, 1)
+
+
+
+    # def test_returns_without_error_for_an_input_list_with_10_elements(self):
+    #     print(f'testing input list with 10 elements...')
+    #     input_list: list = [i for i in range(0, 10)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 10 elements')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_throws_an_error_at_some_element_limit_before_100(self):
+    #     test_list_length: int = 1
+    #     try:
+    #         while test_list_length < 100:
+    #             input_list: list = ['a' for i in range(0, test_list_length)]
+    #             combinations_result: list = c.combinations(source=input_list)
+    #             print(f'completed test with {test_list_length} elements')
+    #             test_list_length += 1
+    #     except:
+    #         self.assertTrue(1, 1)
+    #         return
+    #     self.fail('no exception raised for source list length < 100')
+    #
+    # def test_returns_without_error_for_an_input_list_with_10_chars(self):
+    #     print(f'testing input list with 10 chars...')
+    #     input_list: list = [i for i in range(0, 10)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 10 chars')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_returns_without_error_for_an_input_list_with_20_elements(self):
+    #     print(f'testing input list with 20 elements...')
+    #     input_list: list = [i for i in range(0, 20)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 20 elements')
+    #     self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_20_chars(self):
+    #     print(f'testing input list with 20 chars...')
+    #     input_list: list = [i for i in range(10, 21)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 20 chars')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_returns_without_error_for_an_input_list_with_25_elements(self):
+    #     print(f'testing input list with 25 elements...')
+    #     input_list: list = ['a' for i in range(0, 25)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 25 elements')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_returns_without_error_for_an_input_list_with_30_elements(self):
+    #     print(f'testing input list with 30 elements...')
+    #     input_list: list = ['a' for i in range(0, 30)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 elements')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_returns_without_error_for_an_input_list_with_30_chars(self):
+    #     print(f'testing input list with 30 chars...')
+    #     input_list: list = [i for i in range(100, 111)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 chars')
+    #     self.assertTrue(1, 1)
+
+    # def test_returns_without_error_for_an_input_list_with_30_chars(self):
+    #     print(f'testing input list with 30 chars...')
+    #     input_list: list = [i for i in range(0, 30)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 30 chars')
+    #     self.assertTrue(1, 1)
 
 class CombinationsRTest(unittest.TestCase):
     def test_throws_value_error_for_r_less_than_zero(self):

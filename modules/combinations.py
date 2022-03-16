@@ -1,5 +1,6 @@
 import math
 import copy
+from . import bench_timer
 
 
 def n_choose_r(n: int, r: int) -> int:
@@ -23,6 +24,11 @@ def n_choose_r(n: int, r: int) -> int:
 def combinations(source: list) -> list:
     """Given a source list of length n, returns the set of all possible combinations
        of length 1 to n (or length 0 for n = 0)"""
+
+    # TODO: is there any way to make this algorithm more efficient? Some further kind of grouping?
+    #  As is, it's good for combinations up into the mid-20's for source list length, but elapsed
+    #  time increases exponentially, so length 30 takes an hour, 33 takes 7.7 hours, etc.
+    #  Python is also single-threaded, so there might be a way to run the algorithm faster in parallel.
 
     n: int = len(source)
 
@@ -114,10 +120,27 @@ def clean_r_list_i(r_list_i: list) -> list:
 
 
 if __name__ == '__main__':
-    input_list: list = ['a', 'b', 'c', 'd']
+    # instantiate bench_timer
+    bt = bench_timer.Benchmark()
+
+    # input_list: list = ['a', 'b', 'c', 'd']
     # input_list: list = ['a', 'b', 'c']
     # input_list: list = ['a', 'b']
     # input_list: list = ['a']
     # input_list: list = []
-    print(f'trying {input_list}')
-    print(f'combinations(input_list) = {combinations(source=input_list)}')
+    # print(f'trying {input_list}')
+    # print(f'combinations(input_list) = {combinations(source=input_list)}')
+
+    test_list_length: int = 1
+    while test_list_length <= 25:
+        if test_list_length == 26:
+            break
+
+        input_list: list = ['a' for i in range(0, test_list_length)]
+        print(f'input_list: {input_list}')
+        print(f'testing with length {test_list_length}')
+        bt.start()
+        combinations_result: list = combinations(source=input_list)
+        print(f'completed test with {test_list_length} elements')
+        bt.end()
+        test_list_length += 1
