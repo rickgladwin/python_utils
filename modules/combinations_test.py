@@ -165,19 +165,21 @@ class CombinationsTest(unittest.TestCase):
         print(f'completed with 21 elements of 1 character')
         self.assertTrue(1, 1)
 
-    def test_returns_without_error_for_an_input_list_with_22_elements_of_1_character(self):
-        print(f'testing input list with 22 elements of 1 character...')
-        input_list: list = ['a' for i in range(0, 22)]
-        combinations_result: list = c.combinations(source=input_list)
-        print(f'completed with 22 elements of 1 character')
-        self.assertTrue(1, 1)
+    # def test_returns_without_error_for_an_input_list_with_22_elements_of_1_character(self):
+    #     print(f'testing input list with 22 elements of 1 character...')
+    #     input_list: list = ['a' for i in range(0, 22)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 22 elements of 1 character')
+    #     self.assertTrue(1, 1)
+    #
+    # def test_returns_without_error_for_an_input_list_with_23_elements_of_1_character(self):
+    #     print(f'testing input list with 23 elements of 1 character...')
+    #     input_list: list = ['a' for i in range(0, 23)]
+    #     combinations_result: list = c.combinations(source=input_list)
+    #     print(f'completed with 23 elements of 1 character')
+    #     self.assertTrue(1, 1)
 
-    def test_returns_without_error_for_an_input_list_with_23_elements_of_1_character(self):
-        print(f'testing input list with 23 elements of 1 character...')
-        input_list: list = ['a' for i in range(0, 23)]
-        combinations_result: list = c.combinations(source=input_list)
-        print(f'completed with 23 elements of 1 character')
-        self.assertTrue(1, 1)
+    # NOTE: higher than 23 takes a long time
 
     # def test_returns_without_error_for_an_input_list_with_24_elements_of_1_character(self):
     #     print(f'testing input list with 24 elements of 1 character...')
