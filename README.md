@@ -97,3 +97,7 @@ etc.
 `green modules.combinations_test.NChooseRTest`
 
 etc.
+
+## Notes
+- *There are no plans at this time to actively maintain this repo*. It's a public fork of a personal project that I use to speed up development when I need to reuse utilities and algorithms between languages locally. That said, if someone else gets some use out of this repo or finds it interesting, great!
+
